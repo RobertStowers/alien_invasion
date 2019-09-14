@@ -16,14 +16,19 @@ class Ship():
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
-        # Movement flag
+        # Movement flags
         self.moving_right = False
+        self.moving_left = False
 
 
     def update(self):
-        """Update the ship's position based on the movement flag."""
+        """Update the ship's position based on movement flags."""
         if self.moving_right:
             self.rect.centerx += 1
+        # note: not using elif block so if both left & right keys held done, ship stand still
+        #       and no button has "priority"
+        if self.moving_left:
+            self.rect.centerx -= 1
 
 
     def blitme(self):
