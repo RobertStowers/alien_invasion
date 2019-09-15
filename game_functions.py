@@ -91,6 +91,11 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
+def update_aliens(aliens):
+    """Update the postions of all aliens in the fleet."""
+    aliens.update()
+
+
 def update_screen(ai_settings, screen, ship, aliens, bullets):
     """Update images on the screen and flip to the new screen."""
 
