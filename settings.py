@@ -21,7 +21,8 @@ class Settings():
         self.fleet_direction = 1
 
         # Bullet settings
-        self.bullet_speed_factor = 1
+        self.bullet_speed_factor = 3
+        # best value for speed depends upon speed of system used
         self.bullet_width = 3
         self.bullet_height = 15
         # parentheses not required
