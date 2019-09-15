@@ -17,14 +17,14 @@ class Settings():
 
         # Alien settings
         self.alien_speed_factor = 1
-        self.fleet_drop_speed = 10
+        self.fleet_drop_speed = 100
         # fleet_direction of 1 represents right; -1 represents left.
         self.fleet_direction = 1
 
         # Bullet settings
         self.bullet_speed_factor = 3
         # best value for speed depends upon speed of system used
-        self.bullet_width = 3
+        self.bullet_width = 300
         self.bullet_height = 15
         # parentheses not required
         self.bullet_color = 60, 60, 60
