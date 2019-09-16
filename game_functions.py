@@ -43,18 +43,20 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 
 def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Start a new game when the player clicks Play."""
-    if play_button.rect.collidepoint(mouse_x, mouse_y):
-        # Reset the game statistics.
-        stats.reset_stats()
-        stats.game_active = True
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+    if button_clicked and not stats.game_active:
+        if play_button.rect.collidepoint(mouse_x, mouse_y):
+            # Reset the game statistics.
+            stats.reset_stats()
+            stats.game_active = True
 
-        # Empty the list of aliens and bullets.
-        aliens.empty()
-        bullets.empty()
+            # Empty the list of aliens and bullets.
+            aliens.empty()
+            bullets.empty()
 
-        # Create a new fleet and center the ship.
-        create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship()
+            # Create a new fleet and center the ship.
+            create_fleet(ai_settings, screen, ship, aliens)
+            ship.center_ship()
 
 
 def get_number_aliens_x(ai_settings, alien_width):
