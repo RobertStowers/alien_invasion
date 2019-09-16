@@ -18,6 +18,7 @@ def check_keydown_events(event, ai_settings, screen, stats, ship, aliens, bullet
     elif event.key == pygame.K_p and not stats.game_active:
         # Game has not started. P = Play
         # Consider the number of lives?
+        ai_settings.initialize_dynamic_settings()
         pygame.mouse.set_visible(False)
         start_game(ai_settings, screen, stats, ship, aliens, bullets)
     # elif event.key == pygame.K_p and stats.game_active:
@@ -54,6 +55,9 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
     """Start a new game when the player clicks Play."""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
+        # Reset the game settings.
+        ai_settings.initialize_dynamic_settings()
+
         # Hide the mouse cursor.
         pygame.mouse.set_visible(False)
 
@@ -140,8 +144,9 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     # The first True deletes overlapping bullet, the second True deletes overlapping alien.
 
     if len(aliens) == 0:
-        # Destroy existing bullets and create new fleet.
+        # Destroy existing bullets, speed up game, and create new fleet.
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, aliens)
 
 
