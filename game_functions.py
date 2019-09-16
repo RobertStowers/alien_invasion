@@ -16,8 +16,14 @@ def check_keydown_events(event, ai_settings, screen, stats, ship, aliens, bullet
     elif event.key == pygame.K_SPACE:
         fire_bullet(ai_settings, screen, ship, bullets)
     elif event.key == pygame.K_p and not stats.game_active:
+        # Game has not started. P = Play
+        # Consider the number of lives?
         pygame.mouse.set_visible(False)
         start_game(ai_settings, screen, stats, ship, aliens, bullets)
+    # elif event.key == pygame.K_p and stats.game_active:
+    #     # Game is in progress. P = Pause; add pause attribute?
+    #     pygame.mouse.set_visible(False)
+    #     start_game(ai_settings, screen, stats, ship, aliens, bullets)
     elif event.key == pygame.K_q:
         sys.exit()
 
