@@ -21,7 +21,10 @@ class Scoreboard():
 
     def prep_score(self):
         """Turn the score into a rendered image."""
-        score_str = str(self.stats.score)
+        rounded_score = int(round(self.stats.score, -1))
+        # -1 rounds score to the nearest 10); in Python 3, could leave out the call to int()
+        score_str = "{:,}".format(rounded_score)
+        # insert commas into numbers converted to strings
         self.score_image = self.font.render(score_str, True, self.text_color,
         self.ai_settings.bg_color)
 
