@@ -7,7 +7,7 @@ from bullet import Bullet
 from alien import Alien
 
 
-def check_keydown_events(event, ai_settings, screen, stats, ship, aliens, bullets):
+def check_keydown_events(event, ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Responses to keypresses."""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
@@ -20,7 +20,7 @@ def check_keydown_events(event, ai_settings, screen, stats, ship, aliens, bullet
         # Consider the number of lives?
         ai_settings.initialize_dynamic_settings()
         pygame.mouse.set_visible(False)
-        start_game(ai_settings, screen, stats, ship, aliens, bullets)
+        start_game(ai_settings, screen, stats, sb, ship, aliens, bullets)
     # elif event.key == pygame.K_p and stats.game_active:
     #     # Game is in progress. P = Pause; add pause attribute?
     #     pygame.mouse.set_visible(False)
@@ -43,7 +43,7 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bull
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_keydown_events(event, ai_settings, screen, stats, ship, aliens, bullets)
+            check_keydown_events(event, ai_settings, screen, stats, sb, ship, aliens, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
         elif event.type == pygame.MOUSEBUTTONDOWN:
