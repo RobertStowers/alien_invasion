@@ -25,6 +25,23 @@ def check_keydown_events(event, ai_settings, screen, stats, sb, ship, aliens, bu
     #     # Game is in progress. P = Pause; add pause attribute?
     #     pygame.mouse.set_visible(False)
     #     start_game(ai_settings, screen, stats, ship, aliens, bullets)
+    elif event.key == pygame.K_b and stats.game_active:
+        """Nuclear bomb option!  Kills all aliens on the screen."""
+        stats.score += ai_settings.alien_points * len(aliens)
+        sb.prep_score()
+        check_high_score(stats, sb)
+
+        # Destroy entire fleet and start a new level.
+        # Destroy existing bullets, speed up game, and create new fleet.
+        bullets.empty()
+        aliens.empty()
+        ai_settings.increase_speed()
+
+        # Increase level.
+        stats.level += 1
+        sb.prep_level()
+
+        create_fleet(ai_settings, screen, ship, aliens)
     elif event.key == pygame.K_q:
         sys.exit()
 
@@ -123,7 +140,7 @@ def create_fleet(ai_settings, screen, ship, aliens):
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
-    """Fire a bullet if limit reached yet."""
+    """Fire a bullet if limit not reached yet."""
     # Create a new bullet and add it to the bullets group.
     if len(bullets) < ai_settings.bullets_allowed:
         new_bullet = Bullet(ai_settings, screen, ship)
